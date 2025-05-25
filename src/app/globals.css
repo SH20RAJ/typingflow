@@ -5,17 +5,77 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --secondary: #10b981;
+  --accent: #f43f5e;
+  --muted: #f3f4f6;
+  --muted-dark: #1f2937;
+  --success: #22c55e;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  
+  /* Keyboard colors */
+  --key-bg: #f3f4f6;
+  --key-border: #d1d5db;
+  --key-text: #111827;
+  --key-shadow: rgba(0, 0, 0, 0.05);
+  --key-pressed: #e5e7eb;
+  
+  /* Finger colors */
+  --finger-pinky: #ec4899;
+  --finger-ring: #8b5cf6;
+  --finger-middle: #3b82f6;
+  --finger-index: #10b981;
+  --finger-thumb: #f59e0b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    
+    /* Dark mode keyboard colors */
+    --key-bg: #1f2937;
+    --key-border: #374151;
+    --key-text: #f9fafb;
+    --key-shadow: rgba(0, 0, 0, 0.2);
+    --key-pressed: #111827;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+  
+  code, pre, kbd {
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-500 hover:bg-blue-600 text-white focus:ring-blue-500;
+  }
+  
+  .btn-secondary {
+    @apply bg-emerald-500 hover:bg-emerald-600 text-white focus:ring-emerald-500;
+  }
+  
+  .btn-outline {
+    @apply border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-gray-400;
+  }
+  
+  .input {
+    @apply px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden;
+  }
 }
